@@ -1,6 +1,9 @@
 class Flight < ActiveRecord::Base
   attr_accessible :number, :arrival_airport, :departs_at, :departure_airport, :seats
 
+  DOMESTIC = 0
+  INTL = 1
+
   MILEAGE_CHART = {
     "ORD JFK" => 740,
     "ORD LAX" => 1744,
@@ -13,6 +16,10 @@ class Flight < ActiveRecord::Base
     "LAX SFO" => 338
   }
 
+  def duration
+    miles / 8
+  end
+
   def miles
     distance = MILEAGE_CHART["#{self.departure_airport} #{self.arrival_airport}"]
     if distance.nil?
@@ -22,11 +29,8 @@ class Flight < ActiveRecord::Base
   end
 
   def arrives_at
-
+    self.departs_at + duration.minutes
   end
 
 
-  def duration
-
-  end
 end
