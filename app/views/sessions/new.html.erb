@@ -1,0 +1,8 @@
+<h1>Sign In Here</h1>
+
+
+<%= form_tag "/sessions/create" do %>
+  <%= label_tag :name %><%= text_field_tag :name %><br>
+  <%= label_tag :password %><%= password_field_tag :password %><br>
+  <%= submit_tag "Let Me In" %>
+<% end %>

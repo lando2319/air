@@ -46,6 +46,8 @@
           <ul class="nav pull-right">
             <li><a href="/airports.html">Cities</a></li>
             <li><a href="/support.html">Customer Support</a></li>
+            <li><%= link_to "Sign Up!", new_user_url %></li>
+            <li><%= link_to "Sign In!", sign_in_url %></li>
             <li><a href="/profile.html">My Profile</a></li>
             <li><a href="#about">Logout</a></li>
           </ul>
@@ -56,6 +58,7 @@
 
   <div class="container">
     <!-- Example row of columns -->
+    <p><%= notice %></p>
 
     <%= yield %>
     <hr>
