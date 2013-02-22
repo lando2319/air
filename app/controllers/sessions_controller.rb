@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+
 
   def create
     user = User.find_by_name(params[:name])
@@ -13,5 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    reset_session
+    redirect_to root_url, notice: "See ya!"
   end
 end

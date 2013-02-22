@@ -1,13 +1,16 @@
 OneWayAir::Application.routes.draw do
 
-  get "sessions/new", :as => :sign_in
+  get "sign_in", :controller => 'sessions', :action => 'new'
 
-  post "sessions/create"
+  # get "sign_in" => 'sessions#new', :as => :sign_in
 
-  get "sessions/destroy"
+  post "sessions/create" => 'sessions#create'
+
+  get "sessions/destroy" => 'sessions#destroy', :as => :sign_out
 
   resources :users
 
 
   root to: 'flights#index'
 end
+
