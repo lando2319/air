@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  flight_id: 1
+  departs_on: 2013-02-25
+  credit_card: MyString
+
+two:
+  user_id: 1
+  flight_id: 1
+  departs_on: 2013-02-25
+  credit_card: MyString

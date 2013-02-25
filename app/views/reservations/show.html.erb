@@ -1,0 +1,21 @@
+<p>
+  <b>Departs on:</b>
+  <%= @reservation.departs_on %>
+</p>
+
+<p>
+  <b>Flight #:</b>
+  <%= @reservation.flight.number %><br>
+  Departs <%= @reservation.flight.departure_airport %>
+  at <%= @reservation.flight.departs_at.strftime("%l:%M %p") %><br>
+  Arrives <%= @reservation.flight.arrival_airport %>
+  at <%= @reservation.flight.arrives_at.strftime("%l:%M %p") %>
+</p>
+
+
+<p>
+  <b>Credit Card:</b>
+  <%= @reservation.credit_card %>
+</p>
+
+
