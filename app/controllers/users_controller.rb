@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize_user, except: [:index, :new]
+  before_filter :authorize_user, except: [:index, :new, :create]
 
   def authorize_user
-    if @user.blank? || @user.id != params[:id]
+    @user = User.find_by_id(params[:id])
+    if current_user.blank? || current_user != @user
+      logger.info "Not authorized! #{current_user.inspect}"
       redirect_to root_url, notice: "Nice try"
     end
-    # if session[:user_id].blank? || session[:user_id] != params[:id]
-    #   redirect_to root_url, notice: "Nice try"
-    # else
-    #   @user = User.find(session[:user_id])
-    # end
   end
 
   # GET /users
@@ -55,6 +52,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else

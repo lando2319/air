@@ -12,6 +12,7 @@
   <% end %>
 
   <%= f.hidden_field :flight_id %>
+  <%#= hidden_field_tag :flight_id, params[:flight_id] %>
   <div class="field">
     <%= f.label :departs_on %><br />
     <%= f.date_select :departs_on %>

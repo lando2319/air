@@ -26,7 +26,13 @@
             <td><%= flight.miles %></td>
             <td><%= flight.duration %> minutes</td>
             <td><%= flight.seats %></td>
-            <td><%= link_to "Book Now", new_reservation_url(flight_id: flight.id), class: 'btn btn-success' %></td>
+            <td>
+              <% if current_user %>
+                <%= link_to "Book Now", new_reservation_url(flight_id: flight.id), class: 'btn btn-success' if flight.availability? %></td>
+              <% else %>
+                <%= link_to "Sign Up", new_user_url, class: 'btn btn-success' %></td>
+
+              <% end %>
           </tr>
         <% end %>
       </tbody>

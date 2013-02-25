@@ -6,4 +6,15 @@ class Reservation < ActiveRecord::Base
 
   # TODO: validate the credit card
 
+  validates_presence_of :flight_id
+  validates_presence_of :user_id
+
+  validate :accept_visa_only
+
+  def accept_visa_only
+    unless self.credit_card.starts_with?("4") && self.credit_card.length == 16
+      errors.add(:credit_card, "must be a Visa Card")
+    end
+  end
+
 end

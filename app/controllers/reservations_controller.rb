@@ -24,7 +24,9 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   # GET /reservations/new.json
   def new
-    @reservation = Reservation.new(flight_id: params[:flight_id])
+    @reservation = Reservation.new
+    # @reservation.flight_id = params[:flight_id]
+    @reservation.flight = Flight.find_by_id(params[:flight_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +43,7 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(params[:reservation])
+    @reservation.user = current_user
 
     respond_to do |format|
       if @reservation.save

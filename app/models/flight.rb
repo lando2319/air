@@ -4,6 +4,10 @@ class Flight < ActiveRecord::Base
   DOMESTIC = 0
   INTL = 1
 
+  def availability?
+    self.seats > 0
+  end
+
   MILEAGE_CHART = {
     "ORD JFK" => 740,
     "ORD LAX" => 1744,
