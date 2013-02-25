@@ -4,12 +4,19 @@ class Reservation < ActiveRecord::Base
   belongs_to :flight
   belongs_to :user
 
-  # TODO: validate the credit card
-
   validates_presence_of :flight_id
   validates_presence_of :user_id
 
   validate :accept_visa_only
+
+  after_create :increase_frequent_flyer_total
+
+
+  def increase_frequent_flyer_total
+    # self.user.update_attribute miles, user.miles + flight.miles
+    self.user.miles += self.flight.miles
+    self.user.save
+  end
 
   def accept_visa_only
     unless self.credit_card.starts_with?("4") && self.credit_card.length == 16
