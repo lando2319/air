@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
 
   before_filter :authorize_user, except: [:index, :new]
-  before_filter :get_current_user
-
-  def get_current_user
-    @user = User.find_by_id(session[:user_id])
-  end
 
   def authorize_user
     if @user.blank? || @user.id != params[:id]
