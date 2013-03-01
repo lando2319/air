@@ -9,6 +9,7 @@ class FlightsController < ApplicationController
     else
       @flights = Flight.order('number asc')
     end
-    @flights = @flights.limit(500)
+    @flights = @flights.page(params[:page]).per(7)
+
   end
 end
