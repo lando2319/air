@@ -11,6 +11,11 @@ class Reservation < ActiveRecord::Base
 
   after_create :increase_frequent_flyer_total
 
+  after_update :send_itinerary
+
+  # def send_itinerary
+  #   ReservationMailer.confirm(self).deliver
+  # end
 
   def increase_frequent_flyer_total
     # self.user.update_attribute miles, user.miles + flight.miles

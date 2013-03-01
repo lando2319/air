@@ -47,6 +47,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
+        ReservationMailer.confirm(@reservation).deliver
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
         format.json { render json: @reservation, status: :created, location: @reservation }
       else
