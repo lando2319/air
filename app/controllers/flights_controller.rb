@@ -9,7 +9,7 @@ class FlightsController < ApplicationController
     else
       @flights = Flight.order('number asc')
     end
-    @flights = @flights.page(params[:page]).per(7)
+    @flights = @flights.paginate(:page => params[:page], :per_page => 7)
 
   end
 end
