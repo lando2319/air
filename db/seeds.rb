@@ -7,7 +7,7 @@ airports = ["ORD", "MDW", "SFO", "LAX", "JFK"]
   unless (departure_code == "ORD" && arrival_code == "MDW") ||
          (departure_code == "MDW" && arrival_code == "ORD")
 
-    departure_time = Time.now.beginning_of_day + rand(0..23).hours + rand(0..59).minutes
+    departure_time = Time.now.beginning_of_day + rand(22).hours + rand(59).minutes
 
     Flight.create number: rand(900) + 100,
                   departure_airport: departure_code,
