@@ -1,6 +1,21 @@
 class Flight < ActiveRecord::Base
   attr_accessible :number, :arrival_airport, :departs_at, :departure_airport, :seats
 
+  # departure_airport_id: integer
+  # belongs_to :departure_airport, :class_name => "Airport"
+
+  scope :search, lambda { |keyword| Flight.where("LOWER(departure_airport) LIKE ? OR LOWER(arrival_airport) LIKE ?",
+                                "%#{keyword}%", "%#{keyword}%") }
+
+  # def self.from_chicago
+  #   search('ORD')
+  # end
+
+  # def self.search(keyword)
+  #   Flight.where("LOWER(departure_airport) LIKE ? OR LOWER(arrival_airport) LIKE ?",
+  #                               "%#{keyword}%", "%#{keyword}%")
+  # end
+
   DOMESTIC = 0
   INTL = 1
 

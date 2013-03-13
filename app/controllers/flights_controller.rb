@@ -3,8 +3,7 @@ class FlightsController < ApplicationController
 
     if params[:keyword].present?
       keyword = params[:keyword].downcase
-      @flights = Flight.where("LOWER(departure_airport) LIKE ? OR LOWER(arrival_airport) LIKE ?",
-                                "%#{keyword}%", "%#{keyword}%")
+      @flights = Flight.search(keyword)
       @flights = @flights.order('number asc')
     else
       @flights = Flight.order('number asc')
