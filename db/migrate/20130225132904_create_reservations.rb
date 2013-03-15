@@ -8,5 +8,9 @@ class CreateReservations < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    # add_index :reservations, :user_id
+    # add_index :reservations, :flight_id
+
   end
 end

@@ -4,41 +4,6 @@
 
     <%= will_paginate @flights %>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Flight #</th>
-          <th>From</th>
-          <th>Departs</th>
-          <th>To</th>
-          <th>Arrives</th>
-          <th>Miles</th>
-          <th>Duration</th>
-          <th>Seats</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @flights.each do |flight| %>
-          <tr>
-            <td><%= flight.number %></td>
-            <td><%= flight.departure_airport %></td>
-            <td><%= flight.departs_at.strftime("%l:%M %p") %></td>
-            <td><%= flight.arrival_airport %></td>
-            <td><%= flight.arrives_at.strftime("%l:%M %p") %></td>
-            <td><%= flight.miles %></td>
-            <td><%= flight.duration %> minutes</td>
-            <td><%= flight.seats %></td>
-            <td>
-              <% if current_user %>
-                <%= link_to "Book Now", new_reservation_url(flight_id: flight.id), class: 'btn btn-success' if flight.availability? %></td>
-              <% else %>
-                <%= link_to "Sign Up", new_user_url, class: 'btn btn-success' %></td>
-
-              <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'schedule' %>
   </div>
 </div>
